@@ -1,6 +1,6 @@
 
 <?php 
-$conn = mysqli_connect("localhost","root","","kstore");
+$conn = mysqli_connect("localhost","root","","kj");
 
 
 

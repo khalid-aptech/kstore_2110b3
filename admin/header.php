@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+
+if(!isset($_SESSION["username"]))
+{
+    header("location:http://localhost:82/kj/admin/index.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -1,4 +1,26 @@
 <?php include "header.php"; ?>
+
+
+<?php 
+
+include "config.php";
+
+$query = "SELECT * FROM `user`";
+
+$result = mysqli_query($conn,$query);
+
+if(mysqli_num_rows($result)>0)
+{
+
+
+
+
+
+
+
+?>
+
+
   <div id="admin-content">
       <div class="container">
           <div class="row">
@@ -19,38 +41,34 @@
                           <th>Delete</th>
                       </thead>
                       <tbody>
+                        <?php while($row = mysqli_fetch_assoc($result)) 
+                        
+                        {
+                            ?>
+                    
                           <tr>
-                              <td class='id'>1</td>
-                              <td>ali Khan</td>
-                              <td>ali</td>
-                              <td>admin</td>
-                              <td class='edit'><a href='update-user.php'><i class='fa fa-edit'></i></a></td>
+                              <td class='id'><?php echo $row["user_id"];  ?></td>
+                              <td><?php echo $row["first_name"] . " " . $row["last_name"];  ?></td>
+                              <td><?php echo $row["username"]; ?></td>
+                              <td>
+                                
+                              <?php
+                              if($row["role"]=="1")
+                              {
+                                echo "admin";
+                              } 
+                              else{
+                                echo " normal user";
+                              }
+                              
+                              ?>
+                            
+                            </td>
+                              <td class='edit'><a href='update-user.php?id=<?php echo $row["user_id"];  ?>'><i class='fa fa-edit'></i></a></td>
                               <td class='delete'><a href='delete-user.php'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
-                          <tr>
-                              <td class='id'>2</td>
-                              <td>saman Tanweer</td>
-                              <td>saman</td>
-                              <td>normal</td>
-                              <td class='edit'><a href='update-user.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-user.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>3</td>
-                              <td>zarlish Iqbal</td>
-                              <td>zarlish</td>
-                              <td>admin</td>
-                              <td class='edit'><a href='update-user.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-user.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>4</td>
-                              <td>Asad khan</td>
-                              <td>asad</td>
-                              <td>admin</td>
-                              <td class='edit'><a href='update-user.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-user.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
+                          <?php } ?>
+                        
                       </tbody>
                   </table>
                   <ul class='pagination admin-pagination'>
@@ -62,4 +80,5 @@
           </div>
       </div>
   </div>
+<?php } ?>
 <?php include "footer.php"; ?>
